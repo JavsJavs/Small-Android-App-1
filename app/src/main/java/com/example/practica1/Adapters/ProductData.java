@@ -61,41 +61,42 @@ public class ProductData {
             new ProductData("Microsol Superfisie XI", "1010$", "Eam ex integre quaeque bonorum, ea assum solet scriptorem pri, et usu nonummy accusata interpretaris.", "superfisie11", "microsol"),
             new ProductData("Microsol Superfisie XII", "1010$", "Debitis necessitatibus est no.", "superfisie12", "microsol"),
             new ProductData("Microsol Superfisie XIII", "1010$", "Eu probo graeco eum, at eius choro sit, possit recusabo corrumpit vim ne.", "superfisie13", "microsol"),
-            new ProductData("Microsol Superfisie XIV", "1010$", "Noster diceret delicata vel id.", "superfisie14", "microsol"),};
+            new ProductData("Microsol Superfisie XIV", "1010$", "Eu probo graeco eum, at eius choro sit, possit recusabo corrumpit vim ne. Debitis necessitatibus est no.", "superfisie14", "microsol"),};
 
     public static ProductData[] CUSTOM_DATA = {};
 
     public static ProductData[][] PRODUCT_DATA = {APPLE_DATA, SAMSUNG_DATA, HUAWEI_DATA, MICROSOL_DATA};
 
-    public void addProduct(String productName, String productPrice, String productDescription, String companyName){
-        ProductData newProduct = new ProductData(productName, productPrice, productDescription,"", companyName.toLowerCase());
-        switch (companyName){
-            case "Apple":
-                APPLE_DATA = this.appendValue(APPLE_DATA, newProduct);
+    public static void addProduct(ProductData productData){
+        switch (productData.company.toLowerCase()){
+            case "apple":
+                APPLE_DATA = appendValue(APPLE_DATA, productData);
                 break;
-            case "Samsung":
-                SAMSUNG_DATA = this.appendValue(SAMSUNG_DATA, newProduct);
+            case "samsung":
+                SAMSUNG_DATA = appendValue(SAMSUNG_DATA, productData);
                 break;
-            case "Huawei":
-                HUAWEI_DATA = this.appendValue(HUAWEI_DATA, newProduct);
+            case "huawei":
+                HUAWEI_DATA = appendValue(HUAWEI_DATA, productData);
                 break;
-            case "Microsol":
-                MICROSOL_DATA = this.appendValue(MICROSOL_DATA, newProduct);
+            case "microsol":
+                MICROSOL_DATA = appendValue(MICROSOL_DATA, productData);
                 break;
             default:
-                CUSTOM_DATA = this.appendValue(CUSTOM_DATA, newProduct);
+                CUSTOM_DATA = appendValue(CUSTOM_DATA, productData);
+                if(!CompanyData.companyRegistered(productData.company))
+                    CompanyData.addCompany(new CompanyData(productData.company, "defaultlogo"));
                 break;
         }
-
+        reloadDatabase();
     }
 
-    private ProductData[] appendValue(ProductData[] productArray, ProductData productData){
+    private static ProductData[] appendValue(ProductData[] productArray, ProductData productData){
         ArrayList<ProductData> temp = new ArrayList<ProductData>(Arrays.asList(productArray));
         temp.add(productData);
-        return (ProductData[]) temp.toArray();
+        return temp.toArray(new ProductData[0]);
     }
 
-    private void reloadDatabase(){
+    private static void reloadDatabase(){
         PRODUCT_DATA = new ProductData[][]{APPLE_DATA, SAMSUNG_DATA, HUAWEI_DATA, MICROSOL_DATA, CUSTOM_DATA};
     }
 
