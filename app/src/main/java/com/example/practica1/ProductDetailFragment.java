@@ -1,12 +1,14 @@
 package com.example.practica1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ import java.util.Objects;
 public class ProductDetailFragment extends Fragment {
     private int currentPosition;
     private int currentCompany;
+    private String model;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,8 @@ public class ProductDetailFragment extends Fragment {
             TextView productDetailPrice = (TextView) v.findViewById(R.id.productDetailPrice);
             TextView productDetailDescription = (TextView) v.findViewById(R.id.productDetailDescription);
             ImageView productDetailImage = (ImageView) v.findViewById(R.id.productDetailImage);
-            productDetailName.setText(ProductData.PRODUCT_DATA[this.currentCompany][this.currentPosition].name);
+            this.model = ProductData.PRODUCT_DATA[this.currentCompany][this.currentPosition].name;
+            productDetailName.setText(this.model);
             productDetailPrice.setText(ProductData.PRODUCT_DATA[this.currentCompany][this.currentPosition].price);
             productDetailDescription.setText(ProductData.PRODUCT_DATA[this.currentCompany][this.currentPosition].description);
             String imageResource = ProductData.PRODUCT_DATA[this.currentCompany][this.currentPosition].image;
@@ -63,6 +67,24 @@ public class ProductDetailFragment extends Fragment {
             }else {
                 productDetailImage.setImageResource(getResources().getIdentifier(imageResource, "drawable", Objects.requireNonNull(getContext()).getPackageName()));
             }
+            Button shareButton = v.findViewById(R.id.shareButton);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendMail(v);
+                }
+            });
         }
+    }
+
+    private String fillMailString(String model){
+        return "Hey! Mira como mola el nuevo " + model + "!\n\nPuedes comprarlo en este link: amazoff.com/" + model.toLowerCase().replace(" ", "") + "\n\nYa me lo agradecerás luego\uD83D\uDC4D";
+    }
+
+    private void sendMail(View v){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, fillMailString(this.model));
+        startActivity(intent);
     }
 }

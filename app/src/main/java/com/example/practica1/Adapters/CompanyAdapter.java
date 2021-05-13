@@ -1,7 +1,6 @@
 package com.example.practica1.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ((TextView)holder.linearView.findViewById(R.id.companyName)).setText(companyDataset[position].name);
+        ((TextView)holder.linearView.findViewById(R.id.newCompany)).setText(companyDataset[position].name);
         if(String.valueOf(this.context.getResources().getIdentifier(companyDataset[position].image, "drawable", context.getPackageName())).equals("0")) {
             ((ImageView)holder.linearView.findViewById(R.id.companyImage)).setImageResource(this.context.getResources().getIdentifier("defaultminiature", "drawable", context.getPackageName()));
         }else{

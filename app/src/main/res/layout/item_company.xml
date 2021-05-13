@@ -9,7 +9,7 @@
     android:layout_marginBottom="12sp">
 
     <TextView
-        android:id="@+id/companyName"
+        android:id="@+id/newCompany"
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

@@ -2,6 +2,9 @@ package com.example.practica1.Adapters;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ProductData {
     public String name = "";
     public String price = "";
@@ -9,15 +12,14 @@ public class ProductData {
     public String image = "";
     public String company = "";
 
-
-    public static final ProductData[] SAMSUNG_DATA = {
+    public static ProductData[] SAMSUNG_DATA = {
             new ProductData("Samsung Galaxy S8", "500$", "El Samsung Galaxy S8 es un teléfono inteligente de gama alta fabricado por Samsung Electronics. El dispositivo móvil fue presentado el 29 de marzo de 2017.", "galaxys8", "samsung"),
             new ProductData("Samsung Galaxy S9", "650$", "El Galaxy S9 cuenta con una pantalla de 5.8 pulgadas a 1440 x 2960 pixels de resolución, procesador Snapdragon 845 o Exynos 9810, 4GB de RAM, 64GB de almacenamiento, cámara principal de 12 MP, cámara frontal de 8 MP, batería de 3000 mAh y Android 8.0 Oreo.", "galaxys9", "samsung"),
             new ProductData("Samsung Galaxy S10", "660$", "El Samsung Galaxy S10 llega en el 2019 mejorando en varios aspectos al Galaxy S9. El Galaxy S10 tiene una pantalla QHD+ Dynamic AMOLED de 6.1 pulgadas, y está potenciado por el nuevo procesador Exynos 9820 de ocho núcleos o bien un Snapdragon 855, con 8GB de RAM y 128GB o 512GB de almacenamiento.", "galaxys10", "samsung"),
             new ProductData("Samsung Galaxy S20", "800$", "El Samsung Galaxy S20 cuenta con una batería de 4.000mAh y carga rápida de 25W. La cifra no es espectacular, pero tampoco parece insuficiente sobre el papel para un terminal de 6.2 pulgadas. No obstante, la gestión energética del procesador Exynos y los 120Hz pueden jugar una mala pasada.", "galaxys20", "samsung"),
             new ProductData("Samsung Galaxy S21", "950$", "Basta con echar un vistazo al nuevo Samsung Galaxy S21 para darse cuenta de que aunque el frontal es muy parecido, en la parte trasera hay un cambio de diseño bastante importante. Al menos en lo que respecta al módulo de cámaras, que ahora cuenta con un marco bastante distintivo y de diferentes colores en función de qué color elijamos para el teléfono móvil.", "galaxys21", "samsung"),};
 
-    public static final ProductData[] APPLE_DATA = {
+    public static ProductData[] APPLE_DATA = {
             new ProductData("iPad Pro", "400$", "La experiencia iPad definitiva. Ahora con el rendimiento increíble del chip M1, una pantalla XDR espectacular y conexión 5G ultrarrápida. Abróchate el cinturón.", "ipadpro", "apple"),
             new ProductData("iPad Air", "400$", "El iPad Air hace más que un ordenador y usarlo es tan fácil que a veces parece magia. Y con las nuevas prestaciones es más versátil que nunca.", "ipadair", "apple"),
             new ProductData("iPhone 7", "400$", "Procesador A10 Fusion de cuatro núcleos a 2,34 GHz de 64 bits. Coprocesador de movimiento M10 integrado.", "iphone7", "apple"),
@@ -30,7 +32,7 @@ public class ProductData {
             new ProductData("iPhone 12 Pro", "860$", "El Apple iPhone 12 Pro representa a los iPhone más avanzados de la serie 12. Con una pantalla de 6.1 pulgadas de tecnología OLED, el iPhone 12 Pro está potenciado por el procesador A14 Bionic de Apple, junto con opciones de 128GB, 256 o 512GB de almacenamiento interno no expandible.", "iphone12pro", "apple"),
             new ProductData("iPhone 12 Pro Max", "980$", "El Apple iPhone 12 Pro Max es la variante con mayor tamaño de pantalla de la serie iPhone 12. Con una pantalla OLED de 6.7 pulgadas, el iPhone 12 Pro Max cuenta con un procesador Apple A14 Bionic con opciones de 128GB, 256GB, o 512GB de almacenamiento, cámara cuádruple con tres lentes de 12 megapixels más un lente TOF 3D de tecnología LiDAR, cámara selfie de 12 megapixels, estabilización de imagen, zoom óptico 5x, parlantes stereo, carga rápida e inalámbrica por MagSafe para iPhone o protocolo Qi, resistencia al polvo y agua con certificación iP68, y corre iOS 14.", "iphone12promax", "apple"),};
 
-    public static final ProductData[] HUAWEI_DATA = {
+    public static ProductData[] HUAWEI_DATA = {
             new ProductData("Huawei Mate X", "2550$", "El Huawei Mate X es el primer smartphone desplegable de Huawei. ... Por dentro, el Mate X cuenta con un chipset Kirin 980 con 8GB de memoria RAM y 512GB de almacenamiento interno, y vuelve a contar con la certificación de Leica para su cámara triple de 40MP + 16MP + 8MP.", "matex", "huawei"),
             new ProductData("Huawei Mate 8", "200$", "Las dimensiones del Huawei Mate 8 son: 80,6 mm de ancho, 157,1 mm de alto y 7,9 mm de grosor en su perfil, mientras que su peso es de 185 g. El Huawei Mate 8 tiene un tamaño de pantalla de 6\" , con una resolución de 1920x1080. La pantalla es de tipo LCD IPS NEO. Tiene una densidad de píxeles de 368 ppp.", "mate8", "huawei"),
             new ProductData("Huawei P8", "180$", "En cuanto a características, cuenta con una pantalla 1080p de 5.2 pulgadas, procesador octa-core Kirin 930 a 2GHz, 3GB de RAM, 16GB de almacenamiento interno, cámara trasera de 13 megapixels con OIS, cámara frontal de 8 MP, y corre Android 5.0 Lollipop.", "p8", "huawei"),
@@ -43,9 +45,9 @@ public class ProductData {
             new ProductData("Huawei Mate 30", "620$", "El diseño del Mate 30 es muy estilizado, con mucho cristal (gran parte ocupado por la pantalla) en la parte frontal y un módulo trasero de forma circular en el que se encuentran las cámaras. El notch es de tipo gota. La pantalla del Mate 30 es un panel OLED con formato 18,7:9 que cuenta con una resolución FullHD+. Esto se traduce en 2.244 x 1.080 píxeles, y tiene la capacidad de reproducir contenido HDR.", "mate30", "huawei"),
             new ProductData("Huawei P30", "640$", "El diseño del Huawei P30 es muy similar al del P20, con la excepción de contar con un notch de tipo gota. Se trata de un cuerpo unibody de aluminio con trasera de cristal. El módulo de la doble cámara sobresale y no está ubicado en la parte central del teléfono, sino donde estaba en los P20. La pantalla del Huawei P30 cuenta con un panel AMOLED con soporte HDR. Cuenta con una resolución FullHD+, que se traduce en 2.340 x 1.080. La densidad de píxeles es de 422 píxeles por pulgada y el panel es de 6,1''. Cuenta con lector de huellas en pantalla.", "p30", "huawei"),
             new ProductData("Huawei Mate 40", "850$", "La pantalla del Mate 40 es una OLED flexible de 6,5 pulgadas de diagonal con resolución de 2.376 x 1.080 píxeles, un FullHD+ con ratio 18.7:9. Es compatible con contenidos HDR además de DCI-P3 y tiene una velocidad de refresco de 90Hz. El refresco del panel táctil es de 240Hz.", "mate40", "huawei"),
-            new ProductData("Huawei P40", "860$", "Descubre la auténtica velocidad con el revolucionario chipset 990 5G. La Triple Cámara Leica Ultra Vision con capacidad mejorada por IA revolucionará tu forma de entender la fotografía y el vídeo. Una nueva forma de expresarte está en tus manos… ¿la vas a dejar pasar? \n\n La sofisticación hecha Smartphone. \n\n Reflejando la pureza de la naturaleza, el HUAWEI P40 adopta los colores sólidos de Deep Sea Blue, Ice White, Black, Blush Gold y Silver Forest. El acabado mate refractivo acentúa una sensación etérea de profundidad que revela elegancia y paz interior en cada tono.", "p40", "huawei"),};
+            new ProductData("Huawei P40", "860$", "Descubre la auténtica velocidad con el revolucionario chipset 990 5G. La Triple Cámara Leica Ultra Vision con capacidad mejorada por IA revolucionará tu forma de entender la fotografía y el vídeo. \n\n La sofisticación hecha Smartphone. \n\n Reflejando la pureza de la naturaleza, el HUAWEI P40 adopta los colores sólidos de Deep Sea Blue, Ice White, Black, Blush Gold y Silver Forest. El acabado mate refractivo acentúa una sensación etérea de profundidad que revela elegancia y paz interior en cada tono.", "p40", "huawei"),};
 
-    public static final ProductData[] MICROSOL_DATA = {
+    public static ProductData[] MICROSOL_DATA = {
             new ProductData("Microsol Superfisie I", "110$", "Porro paulo persequeris id pri, eu nostro quaerendum deterruisset ius, deserunt complectitur quo id.", "superfisie1", "microsol"),
             new ProductData("Microsol Superfisie II", "220$", "Ad veri posse cotidieque nam, quo in hinc duis argumentum.", "superfisie2", "microsol"),
             new ProductData("Microsol Superfisie III", "330$", "Molestie expetenda vulputate ad eam, has id nullam liberavisse, at vis esse nostrud forensibus.", "superfisie3", "microsol"),
@@ -61,8 +63,41 @@ public class ProductData {
             new ProductData("Microsol Superfisie XIII", "1010$", "Eu probo graeco eum, at eius choro sit, possit recusabo corrumpit vim ne.", "superfisie13", "microsol"),
             new ProductData("Microsol Superfisie XIV", "1010$", "Noster diceret delicata vel id.", "superfisie14", "microsol"),};
 
+    public static ProductData[] CUSTOM_DATA = {};
 
-    public static final ProductData[][] PRODUCT_DATA = {APPLE_DATA, SAMSUNG_DATA, HUAWEI_DATA, MICROSOL_DATA};
+    public static ProductData[][] PRODUCT_DATA = {APPLE_DATA, SAMSUNG_DATA, HUAWEI_DATA, MICROSOL_DATA};
+
+    public void addProduct(String productName, String productPrice, String productDescription, String companyName){
+        ProductData newProduct = new ProductData(productName, productPrice, productDescription,"", companyName.toLowerCase());
+        switch (companyName){
+            case "Apple":
+                APPLE_DATA = this.appendValue(APPLE_DATA, newProduct);
+                break;
+            case "Samsung":
+                SAMSUNG_DATA = this.appendValue(SAMSUNG_DATA, newProduct);
+                break;
+            case "Huawei":
+                HUAWEI_DATA = this.appendValue(HUAWEI_DATA, newProduct);
+                break;
+            case "Microsol":
+                MICROSOL_DATA = this.appendValue(MICROSOL_DATA, newProduct);
+                break;
+            default:
+                CUSTOM_DATA = this.appendValue(CUSTOM_DATA, newProduct);
+                break;
+        }
+
+    }
+
+    private ProductData[] appendValue(ProductData[] productArray, ProductData productData){
+        ArrayList<ProductData> temp = new ArrayList<ProductData>(Arrays.asList(productArray));
+        temp.add(productData);
+        return (ProductData[]) temp.toArray();
+    }
+
+    private void reloadDatabase(){
+        PRODUCT_DATA = new ProductData[][]{APPLE_DATA, SAMSUNG_DATA, HUAWEI_DATA, MICROSOL_DATA, CUSTOM_DATA};
+    }
 
     public ProductData(String name, String price, String description, String image, String company){
         this.name = name;
